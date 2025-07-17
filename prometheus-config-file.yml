@@ -1,0 +1,74 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'sedes_service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['localhost:8000']
+
+  - job_name: 'asignaturas_service'
+    metrics_path: /asignaturas/custom_metrics
+    static_configs:
+      - targets: ['localhost:8001'] 
+
+  - job_name: 'asistencia_service'
+    metrics_path: /asistencia/custom_metrics
+    static_configs:
+      - targets: ['localhost:8002']
+
+  - job_name: 'calificaciones_service'
+    metrics_path: /custom_metrics
+    static_configs:
+      - targets: ['localhost:8003'] 
+
+  - job_name: 'cursos_service'
+    metrics_path: /cursos/custom_metrics
+    static_configs:
+      - targets: ['localhost:8004']
+
+  - job_name: 'estudiantes_service'
+    metrics_path: /estudiantes/custom_metrics
+    static_configs:
+      - targets: ['localhost:8005'] 
+
+  - job_name: 'autenticacion_service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['localhost:8009']  
+
+  - job_name: 'pre_registro_service'
+    metrics_path: /custom_metrics
+    static_configs:
+      - targets: ['localhost:8010']  
+
+  - job_name: 'observaciones_service'
+    metrics_path: /observaciones/custom_metrics
+    static_configs:
+      - targets: ['localhost:8011']
+
+  - job_name: 'pdf_service'
+    metrics_path: /custom_metrics
+    static_configs:
+      - targets: ['localhost:8015']
+
+#Para ejecutar en la terminal
+#bash SGA-IE-JSMMC-OBSERVABILIDAD/prometheus-run.sh
+
+#Ver las gráficas
+
+# Arranca la API (uvicorn app.main:app --reload).
+
+# En el navegador ve a http://localhost:9090/targets y comprueba que sedes_service esté UP.
+
+# En http://localhost:9090/graph, ejecuta queries como
+
+# http_requests_total_sedes_total
+# rate(http_requests_total_sedes_total[1m])
+# rate(http_request_duration_seconds_sedes_sum[1m]) / rate(http_request_duration_seconds_sedes_count[1m])
+# increase(http_request_errors_total_sedes_total[1m])
