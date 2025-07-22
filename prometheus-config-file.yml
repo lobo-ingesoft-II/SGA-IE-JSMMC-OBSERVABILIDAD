@@ -33,7 +33,7 @@ scrape_configs:
       - targets: ['localhost:8004']
 
   - job_name: 'estudiantes_service'
-    metrics_path: /estudiantes/custom_metrics
+    metrics_path: /metrics
     static_configs:
       - targets: ['localhost:8005'] 
 
@@ -51,6 +51,16 @@ scrape_configs:
     metrics_path: /observaciones/custom_metrics
     static_configs:
       - targets: ['localhost:8011']
+
+  - job_name: 'administracion_service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['localhost:8012']
+
+  - job_name: 'administracion_pre_registro_service'
+    metrics_path: /adm_pre_registro/custom_metrics
+    static_configs:
+      - targets: ['localhost:8013']
 
   - job_name: 'pdf_service'
     metrics_path: /custom_metrics
