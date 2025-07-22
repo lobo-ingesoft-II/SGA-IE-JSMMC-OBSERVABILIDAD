@@ -1,1 +1,1 @@
-./prometheus/prometheus --config.file=prometheus.yml
+./prometheus/prometheus --config.file=prometheus-config-file.yml
